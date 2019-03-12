@@ -46,7 +46,7 @@
 .feedbackForm {
   background-color: #fcfcfc;
   width: 60vh;
-  height: 70vh;
+  /* height: 70vh; */
   border-radius: 10px;
   display: flex;
   flex-flow: column;
@@ -84,4 +84,10 @@
 .submitButton:active {
   background: #aa65e7;
   border-color: #aa65e7;
+}
+
+.form-control:focus {
+  outline: none !important;
+  border:2px solid #c49de6;
+  box-shadow: 0 0 10px #bb8ce5;
 }
