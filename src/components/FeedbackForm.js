@@ -34,20 +34,26 @@ class FeedbackForm extends Component {
 		console.log(this.state.formData);
 	}
 
+	submitForm(e) {
+		e.preventDefault();
+		console.log(e.target)
+	}
+
   render() {
 		const { formData } = this.state;
 
     return (
       <div className="feedbackForm">
         <h2 className="formTitle">Feedback</h2>
-        <Form className="formInput">
+        <Form className="formInput" onSubmit={this.submitForm}>
 					<Form.Group>
 						<Form.Label>First Name</Form.Label>
 						<Form.Control 
-								required
-								value={formData.first}
+								// required
+								// value={formData.first}
 								name='first'
-								onChange={this.handleFormChange}
+								// onChange={this.handleFormChange}
+								type="text"
 								placeholder="Peter" 
 						/>
 					</Form.Group>
@@ -55,9 +61,10 @@ class FeedbackForm extends Component {
 						<Form.Label>Last Name</Form.Label>
 						<Form.Control 
 								// required
-								value={formData.last}
-								name='last'
-								onChange={this.handleFormChange}
+								// value={formData.last}
+								// name='last'
+								// onChange={this.handleFormChange}
+								type="text"
 								placeholder="Anteater" 
 						/>
 					</Form.Group>
@@ -69,9 +76,10 @@ class FeedbackForm extends Component {
 							</InputGroup.Prepend>
 							<Form.Control 
 									// required
-									value={formData.email}
-									name='email'
-									onChange={this.handleFormChange}
+									// value={formData.email}
+									// name='email'
+									// onChange={this.handleFormChange}
+									type="email"
 									placeholder="PeterAnteater@uci.edu" 
 							/>
 						</InputGroup>
@@ -79,28 +87,28 @@ class FeedbackForm extends Component {
 					<Form.Group>
 						<Form.Label>Message</Form.Label>
 						<Form.Control 
-							required
-							value={formData.message}
-							name='message'
-							onChange={this.handleFormChange}
+							// required
+							// value={formData.message}
+							// name='message'
+							// onChange={this.handleFormChange}
+							type="text"
 							as="textarea" 
 							rows="3" 
 							maxLength={500}
 							placeholder="The boba cost more than 2 dollars :("
 						/>
 					</Form.Group>
-        </Form>
-				<div className="formSubmitWrapper centerFlex">
 					<Button 
-						onClick={this.submitFeedback}
+						// onClick={this.submitFeedback}
 						className="submitButton" 
 						variant="primary" 
 						size="lg" 
 						block
+						type="submit"
 					>
 						Submit
 					</Button>
-				</div>
+        </Form>
       </div>
     );
   }
