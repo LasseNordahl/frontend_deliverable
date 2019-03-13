@@ -5,7 +5,6 @@ import './../App';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Button from 'react-bootstrap/Button';
-import Axios from 'axios';
 
 const FEEDBACK_URL = 'https://tranquil-lowlands-24043.herokuapp.com/feedback';
 
