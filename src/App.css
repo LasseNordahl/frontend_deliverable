@@ -89,9 +89,16 @@
   border-color: #aa65e7;
 }
 
+/* Override Bootstrap onClick color, requires !important */
 .submitButton:active {
-  background: #aa65e7;
-  border-color: #aa65e7;
+  background: #aa65e7 !important;
+  border-color: #aa65e7 !important;
+}
+
+.submitButton:focus {
+  outline: none !important;
+  border:1px solid #bb8ce5;
+  box-shadow: 0 0 2px #bb8ce5;
 }
 
 .form-control:focus {

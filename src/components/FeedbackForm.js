@@ -6,8 +6,8 @@ import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Button from 'react-bootstrap/Button';
 
+// Constants declared for component
 const FEEDBACK_URL = 'https://tranquil-lowlands-24043.herokuapp.com/feedback';
-
 const messageLimit = 500
 
 class FeedbackForm extends Component {
@@ -18,30 +18,26 @@ class FeedbackForm extends Component {
 			messageLength: 0
 		}
 
-		this.handleFormChange = this.handleFormChange.bind(this);
+		// Bind functions
+		this.handleMessageChange = this.handleMessageChange.bind(this);
 		this.submitForm = this.submitForm.bind(this);
 		this.postFeedback = this.postFeedback.bind(this);
 	}
 	
-	handleFormChange(e) {
-		let formData = Object.assign({}, this.state.formData);
-		formData[e.target.name] = e.target.value;
-
-		if (e.target.name == 'message') {
-			this.setState({
-				formData: formData,
-				messageLength: e.target.value.length
-			});
-		} else {
-			this.setState({
-				formData: formData
-			});
-		}
+	// handleMessageChange
+	// Takes an event and updates the messageLength attribute of state with the new length
+	handleMessageChange(e) {
+		this.setState({
+			messageLength: e.target.value.length
+		});
 	}
 
+	// submitForm
+	// Gathers form data and passes a grouped data object to the postFeedback function
 	submitForm(e) {
 		e.preventDefault();
 
+		// Bind values of the form to a formData object for posting data
 		let formData = {
 			first: e.target.elements.first.value,
 			last: e.target.elements.last.value,
@@ -52,12 +48,16 @@ class FeedbackForm extends Component {
 		this.postFeedback(formData);
 	}
 
+	// postFeedback
+	// Uses feedback URL with the forms data and logs the response
 	postFeedback(formData) {
 		axios.post(FEEDBACK_URL, formData)
 		.then(function(response) {
+			// Post succeeded
 			console.log(response);
 		})
 		.catch(function(error) {
+			// Post errored out
 			console.log(error);
 		})
 	}
@@ -108,7 +108,7 @@ class FeedbackForm extends Component {
 							as="textarea" 
 							rows="3" 
 							maxLength={messageLimit}
-							onChange={this.handleFormChange}
+							onChange={this.handleMessageChange}
 							placeholder="The boba cost more than 2 dollars :("
 						/>
 						<p className="maxLengthCaption">
