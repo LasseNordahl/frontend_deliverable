@@ -107,3 +107,9 @@
   border-radius: 50%;
   transform: translateY(-30px);
 }
+
+.maxLengthCaption {
+  color: gray;
+  font-size: .7em;
+  margin: 6px;
+}

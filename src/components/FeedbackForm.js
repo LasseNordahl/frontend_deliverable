@@ -8,11 +8,15 @@ import Button from 'react-bootstrap/Button';
 
 const FEEDBACK_URL = 'https://tranquil-lowlands-24043.herokuapp.com/feedback';
 
+const messageLimit = 500
+
 class FeedbackForm extends Component {
 	constructor(props) {
 		super(props)
 
-		this.state = {}
+		this.state = {
+			messageLength: 0
+		}
 
 		this.handleFormChange = this.handleFormChange.bind(this);
 		this.submitForm = this.submitForm.bind(this);
@@ -22,10 +26,17 @@ class FeedbackForm extends Component {
 	handleFormChange(e) {
 		let formData = Object.assign({}, this.state.formData);
 		formData[e.target.name] = e.target.value;
-	
-		this.setState({
-			formData: formData
-		});
+
+		if (e.target.name == 'message') {
+			this.setState({
+				formData: formData,
+				messageLength: e.target.value.length
+			});
+		} else {
+			this.setState({
+				formData: formData
+			});
+		}
 	}
 
 	submitForm(e) {
@@ -42,8 +53,6 @@ class FeedbackForm extends Component {
 	}
 
 	postFeedback(formData) {
-		let self = this
-
 		axios.post(FEEDBACK_URL, formData)
 		.then(function(response) {
 			console.log(response);
@@ -61,11 +70,10 @@ class FeedbackForm extends Component {
 					<Form.Group>
 						<Form.Label>First Name</Form.Label>
 						<Form.Control 
-								// required
+								required
 								name='first'
 								type="text"
 								placeholder="Peter" 
-								defaultValue="Peter"
 						/>
 					</Form.Group>
 					<Form.Group>
@@ -75,7 +83,6 @@ class FeedbackForm extends Component {
 								name='last'
 								type="text"
 								placeholder="Anteater" 
-								defaultValue="Anteater"
 						/>
 					</Form.Group>
 					<Form.Group>
@@ -85,26 +92,28 @@ class FeedbackForm extends Component {
 								<InputGroup.Text id="inputGroupPrepend">@</InputGroup.Text>
 							</InputGroup.Prepend>
 							<Form.Control 
-									// required
+									required
 									name='email'
 									type="email"
-									placeholder="peteranteater@uci.edu" 
-									defaultValue="pa@uci.edu"
+									placeholder="peter.anteater@uci.edu" 
 							/>
 						</InputGroup>
 					</Form.Group>
 					<Form.Group>
 						<Form.Label>Message</Form.Label>
 						<Form.Control 
-							// required
+							required
 							name='message'
 							type="text"
 							as="textarea" 
 							rows="3" 
-							maxLength={500}
+							maxLength={messageLimit}
+							onChange={this.handleFormChange}
 							placeholder="The boba cost more than 2 dollars :("
-							defaultValue="2 dollar bober"
 						/>
+						<p className="maxLengthCaption">
+							{this.state.messageLength} / {messageLimit}
+						</p>
 					</Form.Group>
 					<Button 
 						className="submitButton" 
