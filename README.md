@@ -17,6 +17,6 @@ The 'master' branch includes the code that meets the requirements. You can also 
 
 ### `git checkout animations`
 
-Thanks for the consideration! Feel free to look at the rest of my [https://github.com/LasseNordahl](Github) or [https://www.linkedin.com/in/lassenordahl/](LinkedIn) at 
+Thanks for the consideration! Feel free to look at the rest of my [Github](https://github.com/LasseNordahl) or [LinkedIn](https://www.linkedin.com/in/lassenordahl/) at 
 
 - Lasse Nordahl
